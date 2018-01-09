@@ -3,7 +3,7 @@ LABEL maintainer "The Prometheus Authors <prometheus-developers@googlegroups.com
 
 COPY prometheus                             /bin/prometheus
 COPY promtool                               /bin/promtool
-COPY documentation/examples/prometheus.yml  /etc/prometheus/prometheus.yml
+COPY documentation/prometheus.yml           /etc/prometheus/prometheus.yml
 COPY console_libraries/                     /usr/share/prometheus/console_libraries/
 COPY consoles/                              /usr/share/prometheus/consoles/
 
@@ -19,4 +19,5 @@ ENTRYPOINT [ "/bin/prometheus" ]
 CMD        [ "--config.file=/etc/prometheus/prometheus.yml", \
              "--storage.tsdb.path=/prometheus", \
              "--web.console.libraries=/usr/share/prometheus/console_libraries", \
-             "--web.console.templates=/usr/share/prometheus/consoles" ]
+             "--web.console.templates=/usr/share/prometheus/consoles", \
+             "--storage.tsdb.retention=200h" ]
